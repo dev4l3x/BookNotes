@@ -22,7 +22,10 @@ module.exports = class Repository {
 
     create(entity)
     {
-
+        let model = new this._collection();
+        Object.assign(model, entity);
+        model.save();
+        return model;
     }
 
 }
