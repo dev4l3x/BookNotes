@@ -6,9 +6,9 @@ module.exports = class CreateBookService {
         this._repository = repository;
     }
 
-    create(entityToCreate)
+    async create(entityToCreate)
     {
-        return this._repository.create(entityToCreate);
+        return await this._repository.create(entityToCreate);
     }
 
 }

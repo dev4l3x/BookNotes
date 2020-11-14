@@ -20,11 +20,11 @@ module.exports = class Repository {
         return this._collection.findById(id).exec();
     }
 
-    create(entity)
+    async create(entity)
     {
         let model = new this._collection();
         Object.assign(model, entity);
-        model.save();
+        await model.save();
         return model;
     }
 

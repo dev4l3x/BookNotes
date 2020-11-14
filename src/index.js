@@ -5,14 +5,9 @@ module.exports.app = app;
 const port = 3000
 const Repository = require('./common/persistence/Repository');
 const DatabaseConfiguration = require('./configuration/DatabaseConfiguration');
-const mongoose = require('mongoose');
+const commandBusConfiguration = require('./configuration/commandBusConfiguration');
 
-
-// BK = mongoose.model('Book', DatabaseConfiguration.bookSchema);
-
-
-// var book = new BK({title: "pruebadocumento", body: "prueba mongoose"});
-// book.save();
+commandBusConfiguration();
 
 app.use(express.json());
 
