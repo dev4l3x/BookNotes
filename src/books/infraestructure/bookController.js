@@ -3,15 +3,15 @@ const CommandBus = require('../../common/commandBus');
 
 module.exports = class BookController {
 
-    static async book_create_post(req, res) {
+    static async book_create_post(req, res, next) {
         let command = new CreateBookCommand(req.body.title);
         try{
             await CommandBus.instance.dispatch(command);
         }
         catch(error)
         {
-            throw new Error();
+            return next(error);
         }
-        res.status(201).send('Created');
+        return res.status(201).send('Created');
     }
 }

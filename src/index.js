@@ -14,10 +14,8 @@ app.use(express.json());
 const bookRoutes = require('./books/infraestructure/bookRoutes');
 
 
-app.get('/', async function(req, res){
-    let rep = new Repository(BK);
-    books = await rep.getAll();
-    res.send(books);
+app.use(function(error, req, res, next){
+    return res.status(500).send("Internal server error");
 });
 
 
