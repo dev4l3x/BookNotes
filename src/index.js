@@ -1,5 +1,6 @@
 const express = require('express'); 
 const Book = require('./books/domain/book');
+require('dotenv').config();
 const app = express();
 module.exports.app = app;
 const port = 3000
@@ -11,7 +12,9 @@ commandBusConfiguration();
 
 app.use(express.json());
 
-const bookRoutes = require('./books/infraestructure/bookRoutes');
+
+require('./books/infraestructure/bookRoutes');
+require('./auth/infraestructure/authRoutes');
 
 
 app.use(function(error, req, res, next){
