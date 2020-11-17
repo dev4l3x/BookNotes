@@ -22,9 +22,15 @@ module.exports = class AuthController {
 
     static async register_post(req, res, next){
 
-        const command = new RegisterCommand()
-        Object.assign(command, req.body);
-        const success = await CommandBus.instance.dispatch(command);
-        res.status(success ? 201 : 500).send(success ? "Created" : "An error has ocurred");
+        try{
+            const command = new RegisterCommand()
+            Object.assign(command, req.body);
+            const success = await CommandBus.instance.dispatch(command);
+        
+            res.status(success ? 201 : 500).send(success ? "Created" : "An error has ocurred");
+        }
+        catch(error){
+            next(error);
+        }
     }
 }

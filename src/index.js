@@ -20,7 +20,8 @@ require('./auth/infraestructure/authRoutes');
 
 
 app.use(function(error, req, res, next){
-    return res.status(500).send("Internal server error");
+    if(error)
+        return res.status(500).send(`Internal server error: ${error}`);
 });
 
 

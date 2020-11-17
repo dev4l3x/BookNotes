@@ -14,7 +14,7 @@ let bookSchema = new Schema({
 });
 
 let UserSchema = new Schema({
-    username: String,
+    username: {type: String, unique: true, required: true},
     password: String,
     name: String,
     lastname: String,
