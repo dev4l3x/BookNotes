@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb+srv://asiglesias:X63buEYfd7ccXCRXRXta@booksnotes.ssmch.mongodb.net/BooksNotes?retryWrites=true&w=majority", {
+mongoose.connect("", {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useFindAndModify: false,
