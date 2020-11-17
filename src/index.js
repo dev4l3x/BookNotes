@@ -7,8 +7,10 @@ const port = 3000
 const Repository = require('./common/persistence/Repository');
 const DatabaseConfiguration = require('./configuration/DatabaseConfiguration');
 const commandBusConfiguration = require('./configuration/commandBusConfiguration');
+const configureQueryBus = require('./configuration/queryBusConfiguration');
 
 commandBusConfiguration();
+configureQueryBus();
 
 app.use(express.json());
 

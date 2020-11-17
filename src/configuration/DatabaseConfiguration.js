@@ -13,4 +13,13 @@ let bookSchema = new Schema({
     title: String
 });
 
+let UserSchema = new Schema({
+    username: String,
+    password: String,
+    name: String,
+    lastname: String,
+    email: String
+});
+
+module.exports.UserModel = mongoose.model('User', UserSchema);
 module.exports.BookModel = mongoose.model('Book', bookSchema);

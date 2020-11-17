@@ -19,7 +19,7 @@ module.exports = class CommandBus {
     {
         let CommandHandlerType = this._commandHandlers[command.constructor.name];
         let commandHandler = new CommandHandlerType(command);
-        commandHandler.handle();
+        return commandHandler.handle();
     }
 
     static get instance() {
