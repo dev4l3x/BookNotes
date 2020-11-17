@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 module.exports = class AuthenticateUserService{
 
@@ -9,7 +10,9 @@ module.exports = class AuthenticateUserService{
 
     async authenticate(user)
     {
-        if(user.username === "admin" && user.password === "test")
+        user.password = crypto.createHash('sha1').update(user.password).digest('hex');
+        const exists = await this._rep.existsUser(user);
+        if(exists)
         {
             const token = jwt.sign(
                 {role: 'user'}, 

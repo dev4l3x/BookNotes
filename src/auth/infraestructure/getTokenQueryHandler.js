@@ -1,5 +1,5 @@
 
-const Repo = require('../../common/persistence/Repository');
+const UserRepo = require('../infraestructure/userRepository');
 const {UserModel} = require('../../configuration/DatabaseConfiguration');
 const User = require('../domain/user');
 const AuthService = require('../application/authenticateUserService');
@@ -11,7 +11,7 @@ module.exports = class GetTokenQueryHandler {
     }
 
     async handle(){
-        const rep = new Repo(UserModel);
+        const rep = new UserRepo();
         const user = new User(this.command.username, this.command.password);
         const service = new AuthService(rep);
         return await service.authenticate(user);
