@@ -2,8 +2,8 @@
 const QueryBus = require('../../common/queryBus');
 const CommandBus = require('../../common/commandBus');
 const jwt = require('jsonwebtoken');
-const GetTokenQuery = require('./getTokenQuery');
-const RegisterCommand = require('./registerCommand');
+const GetTokenQuery = require('./cqrs/queries/getTokenQuery');
+const RegisterCommand = require('./cqrs/commands/registerCommand');
 
 module.exports = class AuthController {
 

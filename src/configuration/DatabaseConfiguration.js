@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("", {
+mongoose.connect(process.env.DATABASE_CONNECTION, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -10,7 +10,21 @@ mongoose.connect("", {
 Schema = mongoose.Schema;
 
 let bookSchema = new Schema({
-    title: String
+    title: String,
+    author: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+});
+
+let noteSchema = new Schema({
+    title: String, 
+    body: String,
+    book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Book'
+    }
 });
 
 let UserSchema = new Schema({
@@ -23,3 +37,4 @@ let UserSchema = new Schema({
 
 module.exports.UserModel = mongoose.model('User', UserSchema);
 module.exports.BookModel = mongoose.model('Book', bookSchema);
+module.exports.NoteModel = mongoose.model('Note', noteSchema);

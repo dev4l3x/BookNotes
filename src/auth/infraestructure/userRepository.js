@@ -10,4 +10,10 @@ module.exports = class UserRepository extends Repository {
         const retrievedUser = await this._collection.findOne({ 'username': user.username, 'password': user.password });
         return retrievedUser !== undefined && retrievedUser !== null;
     }
+
+    async findUserByUsernameAndPasswordOrNull(user)
+    {
+        const retrievedUser = await this._collection.findOne({ 'username': user.username, 'password': user.password });
+        return retrievedUser || null;
+    }
 }

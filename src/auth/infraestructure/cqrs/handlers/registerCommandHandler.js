@@ -1,7 +1,7 @@
-const RegisterUserService = require('../application/registerUserService');
-const User = require('../domain/user');
-const Rep = require('../../common/persistence/Repository');
-const {UserModel} = require('../../configuration/DatabaseConfiguration');
+const RegisterUserService = require('../../../application/registerUserService');
+const User = require('../../../domain/user');
+const Rep = require('../../../../common/persistence/Repository');
+const {UserModel} = require('../../../../configuration/DatabaseConfiguration');
 
 module.exports = class RegisterCommandHandler {
     constructor(command)

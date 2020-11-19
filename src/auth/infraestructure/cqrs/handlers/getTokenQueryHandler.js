@@ -1,8 +1,8 @@
 
-const UserRepo = require('../infraestructure/userRepository');
-const {UserModel} = require('../../configuration/DatabaseConfiguration');
-const User = require('../domain/user');
-const AuthService = require('../application/authenticateUserService');
+const UserRepo = require('../../userRepository');
+const {UserModel} = require('../../../../configuration/DatabaseConfiguration');
+const User = require('../../../domain/user');
+const AuthService = require('../../../application/authenticateUserService');
 
 module.exports = class GetTokenQueryHandler {
     constructor(command)
