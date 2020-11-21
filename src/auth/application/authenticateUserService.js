@@ -12,7 +12,7 @@ module.exports = class AuthenticateUserService{
     {
         user.password = crypto.createHash('sha1').update(user.password).digest('hex');
         const retrievedUser = await this._rep.findUserByUsernameAndPasswordOrNull(user);
-        if(user)
+        if(retrievedUser)
         {
             const token = jwt.sign(
                 {

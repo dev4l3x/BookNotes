@@ -5,13 +5,13 @@ describe('CreateBookService', () => {
         let created = false;
         let mockRepository = {};
         mockRepository.prototype = {}
-        mockRepository.prototype.create = function()
+        mockRepository.prototype.createBookForUser = function(book, user)
         {
             created = true;
         }
 
         let bookService = new CreateBookService(mockRepository.prototype);
-        bookService.create();
+        bookService.create({}, {});
 
         assert.strictEqual(created, true);
     });
