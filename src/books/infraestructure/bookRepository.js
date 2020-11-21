@@ -8,9 +8,16 @@ module.exports = class BookRepository extends Repository {
 
     async createBookForUser(book, user){
         let model = new this._collection();
-        Object.assign(model, book);
+        model.title = book.title;
+        model.author = book.author;
         model.user = user._id;
         await model.save();
         return model;
+    } 
+
+    async isBookOfUser(bookId, user)
+    {
+        let book = await this._collection.findById(bookId);
+        return book.user._id.equals(user._id);
     }
 }

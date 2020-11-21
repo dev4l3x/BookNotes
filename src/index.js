@@ -21,6 +21,7 @@ app.use(express.json());
 
 require('./books/infraestructure/bookRoutes');
 require('./auth/infraestructure/authRoutes');
+require('./notes/infraestructure/notesRoutes');
 
 
 app.use(function(error, req, res, next){

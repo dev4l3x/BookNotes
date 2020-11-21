@@ -25,7 +25,7 @@ module.exports = class Book{
     }
 
     get author(){
-        return this._title;
+        return this._author;
     }
 
     set author(value){

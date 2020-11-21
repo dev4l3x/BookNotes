@@ -1,11 +1,14 @@
 const CommandBus = require('../common/commandBus');
-const CreateBookCommand = require('../books/infraestructure/createBookCommand');
-const CreateBookCommandHandler = require('../books/infraestructure/createBookCommandHandler');
-const RegisterCommand = require('../auth/infraestructure/registerCommand');
-const RegisterCommandHandler = require('../auth/infraestructure/registerCommandHandler');
+const CreateBookCommand = require('../books/infraestructure/cqrs/commands/createBookCommand');
+const CreateBookCommandHandler = require('../books/infraestructure/cqrs/handlers/createBookCommandHandler');
+const RegisterCommand = require('../auth/infraestructure/cqrs/commands/registerCommand');
+const RegisterCommandHandler = require('../auth/infraestructure/cqrs/handlers/registerCommandHandler');
+const CreateNoteCommand = require('../notes/infraestructure/cqrs/commands/createNoteCommand');
+const CreateNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/createNoteCommandHandler');
 
 module.exports = function configureCommandBus()
 {
     CommandBus.instance.addCommandHandler(CreateBookCommand.name, CreateBookCommandHandler);
     CommandBus.instance.addCommandHandler(RegisterCommand.name, RegisterCommandHandler);
+    CommandBus.instance.addCommandHandler(CreateNoteCommand.name, CreateNoteCommandHandler);
 }

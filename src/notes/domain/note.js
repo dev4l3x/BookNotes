@@ -1,7 +1,7 @@
-class Note{
-    constructor(title, content, book)
+module.exports = class Note{
+    constructor(title, body)
     {
         this.title = title;
-        this.content = content;
+        this.body = body;
     }
 }
