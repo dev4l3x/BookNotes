@@ -6,6 +6,9 @@ const {authmiddle} = require('../../common/middlewares/authMiddleware');
 
 
 router.use('/:bookId/notes', authmiddle);
+router.use('/notes/:noteId', authmiddle);
 app.use('/', router);
 
 app.post('/:bookId/notes', NotesController.note_post);
+
+app.put('/notes/:noteId', NotesController.note_edit_put);

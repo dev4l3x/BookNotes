@@ -20,4 +20,5 @@ module.exports = class BookRepository extends Repository {
         let book = await this._collection.findById(bookId);
         return book.user._id.equals(user._id);
     }
+
 }

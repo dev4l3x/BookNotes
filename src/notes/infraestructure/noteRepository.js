@@ -12,4 +12,5 @@ module.exports = class NoteRepository extends Repository {
         await model.save();
         return model;
     }
+
 }

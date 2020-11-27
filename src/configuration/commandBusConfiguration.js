@@ -5,10 +5,13 @@ const RegisterCommand = require('../auth/infraestructure/cqrs/commands/registerC
 const RegisterCommandHandler = require('../auth/infraestructure/cqrs/handlers/registerCommandHandler');
 const CreateNoteCommand = require('../notes/infraestructure/cqrs/commands/createNoteCommand');
 const CreateNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/createNoteCommandHandler');
+const EditNoteCommand = require('../notes/infraestructure/cqrs/commands/editNoteCommand');
+const EditNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/editNoteCommandHandler');
 
 module.exports = function configureCommandBus()
 {
     CommandBus.instance.addCommandHandler(CreateBookCommand.name, CreateBookCommandHandler);
     CommandBus.instance.addCommandHandler(RegisterCommand.name, RegisterCommandHandler);
     CommandBus.instance.addCommandHandler(CreateNoteCommand.name, CreateNoteCommandHandler);
+    CommandBus.instance.addCommandHandler(EditNoteCommand.name, EditNoteCommandHandler);
 }
