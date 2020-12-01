@@ -1,5 +1,7 @@
 const Repository = require('../../common/persistence/Repository');
 const {BookModel} = require('../../configuration/DatabaseConfiguration');
+const Book = require('../domain/book');
+const mapper = require('../../common/utilities/mapper');
 
 module.exports = class BookRepository extends Repository {
     constructor(){
@@ -14,6 +16,24 @@ module.exports = class BookRepository extends Repository {
         await model.save();
         return model;
     } 
+
+    async getAllBooksOfUser(user){
+        let books = await this._collection.find({ user: user._id }).populate('notes');
+        await books[0].populate('notes').execPopulate();
+
+        let booksMapped = books.map((book) => { 
+            let bookDto = {
+                title: "",
+                author: "",
+                notes: ""
+            }
+            mapper(bookDto, book);
+            return bookDto
+        
+        });
+
+        return booksMapped;
+    }
 
     async isBookOfUser(bookId, user)
     {

@@ -15,7 +15,11 @@ let bookSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    notes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Note'
+    }]
 });
 
 let noteSchema = new Schema({
