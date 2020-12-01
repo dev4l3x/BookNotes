@@ -3,9 +3,10 @@ const {BadArgError} = require('../../common/exceptions/badArgumentError');
 
 module.exports = class CreateNoteService {
 
-    constructor(repository)
+    constructor(noteRepository, bookRepository)
     {
-        this._rep = repository;
+        this._noteRepository = noteRepository;
+        this._bookRepository = bookRepository;
     }
 
     async createNoteForBook(note, bookId)
@@ -15,6 +16,13 @@ module.exports = class CreateNoteService {
             throw new BadArgError("BookId cannot be empty");
         }
 
-        await this._rep.createNoteForBook(note, bookId);
+        let book = await this._bookRepository.get(bookId);
+        
+        let createdNote = await this._noteRepository.createNoteForBook(note, bookId);
+
+        //Cambiar para pushear la nota en vez del id, crear un mapper para el repositorio, para recibiir entidades de mongodb
+        book.notes.push(createdNote._id);
+
+        await this._bookRepository.update(book);
     }
 }

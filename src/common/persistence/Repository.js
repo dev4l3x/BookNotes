@@ -34,7 +34,7 @@ module.exports = class Repository {
         let model = await this.get(entity.id);
         if(model === null || model === undefined)
             throw new BadArgError("Does not exists entity with the given id");
-        for(let key in Object.keys(entity))
+        for(let key of Object.keys(entity))
         {
             model[key] = entity[key];
         }

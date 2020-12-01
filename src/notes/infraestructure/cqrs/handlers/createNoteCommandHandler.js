@@ -24,7 +24,7 @@ module.exports = class CreateNoteCommandHandler {
             this.command.body
         );
 
-        const service = new CreateNoteService(rep);
+        const service = new CreateNoteService(rep, bookRep);
         return await service.createNoteForBook(note, this.command.book);
     }
 }

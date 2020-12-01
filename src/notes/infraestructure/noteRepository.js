@@ -8,7 +8,9 @@ module.exports = class NoteRepository extends Repository {
 
     async createNoteForBook(note, bookId){
         let model = new this._collection();
-        Object.assign(model, {...note, book: bookId });
+        model.title = note.title;
+        model.book = bookId;
+        model.body = note.body;
         await model.save();
         return model;
     }
