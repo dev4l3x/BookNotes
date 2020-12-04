@@ -20,8 +20,10 @@ module.exports = class CreateNoteCommandHandler {
             throw new AuthError("User authenticated cannot create notes on this book.");
 
         const note = new Note(
-            this.command.title,
-            this.command.body
+            {
+                title: this.command.title,
+                body: this.command.body
+            }
         );
 
         const service = new CreateNoteService(rep, bookRep);

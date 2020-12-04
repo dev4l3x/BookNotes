@@ -5,7 +5,7 @@ module.exports = class Note{
     _title;
     _body;
 
-    constructor(title, body, id)
+    constructor({title, body, id})
     {
         this.title = title;
         this.body = body;

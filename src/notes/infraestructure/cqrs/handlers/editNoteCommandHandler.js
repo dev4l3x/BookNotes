@@ -17,9 +17,11 @@ module.exports = class EditNoteCommandHandler {
         const bookRep = new BookRepository();
 
         const note = new Note(
-            this.command.title,
-            this.command.body,
-            this.command.noteId
+            {
+                title: this.command.title,
+                body: this.command.body,
+                id: this.command.noteId
+            }
         );
         
         const retrievedNote = await rep.get(note.id);

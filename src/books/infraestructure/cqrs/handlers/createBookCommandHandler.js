@@ -12,7 +12,7 @@ module.exports = class CreateBookCommandHandler{
     {
         const repository = new Repo();
         const bookService = new CreateBookService(repository);
-        const book = new Book(this.command.title, this.command.author);
+        const book = new Book({ title: this.command.title, author: this.command.author });
         await bookService.create(book, this.command.userCreator);
     }
 }

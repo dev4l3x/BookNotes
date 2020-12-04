@@ -8,7 +8,7 @@ module.exports = class BooksRespository {
 
     getBooks (){
         return [
-            new Book("prueba", "prueba", [])
+            new Book({ title: "prueba", author: "prueba", notes: [] } )
         ];
     }
 }

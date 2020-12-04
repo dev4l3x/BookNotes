@@ -7,7 +7,7 @@ module.exports = class Book{
     _author;
     _notes;
 
-    constructor(title, author, notes = [])
+    constructor({ title, author, notes = [] })
     {
         this.title = title;
         this.author = author;
