@@ -3,6 +3,7 @@ const QueryBus = require('../../common/queryBus');
 const CommandBus = require('../../common/commandBus');
 const CreateNoteCommand = require('./cqrs/commands/createNoteCommand');
 const EditNoteCommand = require('./cqrs/commands/editNoteCommand');
+const DeleteNoteCommand = require('./cqrs/commands/deleteNoteCommand');
 const User = require('../../auth/domain/user');
 
 module.exports = class NotesController {
@@ -31,6 +32,17 @@ module.exports = class NotesController {
             return next(error);
         }
         return res.status(200).send("Modified");
+    }
+
+    static async note_delete(req, res, next){
+        try{
+            let deleteNoteCommand = new DeleteNoteCommand(req.params.noteId, req.user);
+            await CommandBus.instance.dispatch(deleteNoteCommand);
+        }
+        catch(error){
+            next(error);
+        }
+        return res.status(200).send("Deleted");
     }
 
 }

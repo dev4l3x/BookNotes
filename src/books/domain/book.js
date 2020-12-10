@@ -7,12 +7,15 @@ module.exports = class Book{
     _author;
     _notes;
 
-    constructor({ title, author, notes = [] })
+    constructor({ title, author, id ,user ,notes = [] })
     {
         this.title = title;
         this.author = author;
         this.notes = notes;
+        this.user = user;
+        this.id = id;
     }
+
 
     get title(){
         return this._title;

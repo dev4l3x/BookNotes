@@ -7,6 +7,8 @@ const CreateNoteCommand = require('../notes/infraestructure/cqrs/commands/create
 const CreateNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/createNoteCommandHandler');
 const EditNoteCommand = require('../notes/infraestructure/cqrs/commands/editNoteCommand');
 const EditNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/editNoteCommandHandler');
+const DeleteNoteCommand = require('../notes/infraestructure/cqrs/commands/deleteNoteCommand');
+const DeleteNoteCommandHandler = require('../notes/infraestructure/cqrs/handlers/deleteNoteCommandHandler');
 
 module.exports = function configureCommandBus()
 {
@@ -14,4 +16,5 @@ module.exports = function configureCommandBus()
     CommandBus.instance.addCommandHandler(RegisterCommand.name, RegisterCommandHandler);
     CommandBus.instance.addCommandHandler(CreateNoteCommand.name, CreateNoteCommandHandler);
     CommandBus.instance.addCommandHandler(EditNoteCommand.name, EditNoteCommandHandler);
+    CommandBus.instance.addCommandHandler(DeleteNoteCommand.name, DeleteNoteCommandHandler);
 }

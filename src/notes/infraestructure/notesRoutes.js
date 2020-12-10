@@ -12,3 +12,5 @@ app.use('/', router);
 app.post('/:bookId/notes', NotesController.note_post);
 
 app.put('/notes/:noteId', NotesController.note_edit_put);
+
+app.delete('/notes/:noteId', NotesController.note_delete);

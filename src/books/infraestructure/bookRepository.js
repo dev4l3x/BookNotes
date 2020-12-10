@@ -35,4 +35,9 @@ module.exports = class BookRepository extends Repository {
         return book.user._id.equals(user._id);
     }
 
+    async getBookContainingNote(note){
+        let book = await this._collection.findOne({ notes: note._id }).lean();
+        return mapToTypeFrom({type: Book, properties:["title", "author", "notes", "id"]}, book);
+    }
+
 }
