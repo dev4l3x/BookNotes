@@ -43,7 +43,7 @@ module.exports = class Repository {
     }
 
     async delete(entity){
-        await this._collection.deleteOne({ _id: entity._id });
+        let result = await this._collection.deleteOne({ _id: entity._id });
     }
 
 }

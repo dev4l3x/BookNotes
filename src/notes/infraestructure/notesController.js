@@ -40,7 +40,7 @@ module.exports = class NotesController {
             await CommandBus.instance.dispatch(deleteNoteCommand);
         }
         catch(error){
-            next(error);
+            return next(error);
         }
         return res.status(200).send("Deleted");
     }

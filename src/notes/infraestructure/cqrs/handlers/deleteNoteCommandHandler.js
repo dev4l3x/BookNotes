@@ -14,15 +14,11 @@ module.exports = class DeleteNoteCommandHandler {
         const rep = new NoteRepository();
         const bookRep = new BookRepository();
 
-        const note = await rep.get(this.command.noteId);
-        const book = await bookRep.getBookContainingNote(note);
-
-        if(!(await bookRep.isBookOfUser(book.id, this.command.userAuthenticated)))
-            throw new AuthError("User authenticated cannot delete notes on this book.");
-
         
+        const note = await rep.get(this.command.noteId);        
 
-        const service = new DeleteNoteService(rep, bookRep);
+        const service = new DeleteNoteService(rep, bookRep, this.command.userAuthenticated);
+
         return await service.deleteNote(note);
     }
 }
