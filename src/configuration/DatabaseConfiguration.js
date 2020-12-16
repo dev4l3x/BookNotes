@@ -1,42 +1,42 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DATABASE_CONNECTION, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
 
 Schema = mongoose.Schema;
 
-let bookSchema = new Schema({
-    title: String,
-    author: String,
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    notes: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Note'
-    }]
+const bookSchema = new Schema({
+  title: String,
+  author: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  notes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Note',
+  }],
 });
 
-let noteSchema = new Schema({
-    title: String, 
-    body: String,
-    book: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Book'
-    }
+const noteSchema = new Schema({
+  title: String,
+  body: String,
+  book: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book',
+  },
 });
 
-let UserSchema = new Schema({
-    username: {type: String, unique: true, required: true},
-    password: String,
-    name: String,
-    lastname: String,
-    email: String
+const UserSchema = new Schema({
+  username: {type: String, unique: true, required: true},
+  password: String,
+  name: String,
+  lastname: String,
+  email: String,
 });
 
 module.exports.UserModel = mongoose.model('User', UserSchema);

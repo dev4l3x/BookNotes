@@ -4,7 +4,7 @@ const GetTokenQueryHandler = require('../auth/infraestructure/cqrs/handlers/getT
 const GetBooksQuery = require('../books/infraestructure/cqrs/queries/getBooksQuery');
 const GetBooksQueryHandler = require('../books/infraestructure/cqrs/handlers/getBooksQueryHandler');
 
-module.exports = function configureQueryBus(){
-    QueryBus.instance.addQueryHandler(GetTokenQuery.name, GetTokenQueryHandler);
-    QueryBus.instance.addQueryHandler(GetBooksQuery.name, GetBooksQueryHandler);
-}
+module.exports = function configureQueryBus() {
+  QueryBus.instance.addQueryHandler(GetTokenQuery.name, GetTokenQueryHandler);
+  QueryBus.instance.addQueryHandler(GetBooksQuery.name, GetBooksQueryHandler);
+};

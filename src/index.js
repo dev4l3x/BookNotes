@@ -1,19 +1,14 @@
-const express = require('express'); 
-const Book = require('./books/domain/book');
+const express = require('express');
 require('dotenv').config();
 const app = express();
 module.exports.app = app;
-const port = 3000
-const Repository = require('./common/persistence/Repository');
+const port = 3000;
 
 const httpFactory = require('./common/exceptions/httpErrorFactory');
-const DatabaseConfiguration = require('./configuration/DatabaseConfiguration');
-const commandBusConfiguration = require('./configuration/commandBusConfiguration');
+const cmdBusConfiguration = require('./configuration/commandBusConfiguration');
 const configureQueryBus = require('./configuration/queryBusConfiguration');
-const BadArgumentError = require('./common/exceptions/badArgumentError');
 
-
-commandBusConfiguration();
+cmdBusConfiguration();
 configureQueryBus();
 
 app.use(express.json());
@@ -24,23 +19,22 @@ require('./auth/infraestructure/authRoutes');
 require('./notes/infraestructure/notesRoutes');
 
 
-app.use(function(error, req, res, next){
-    if(error){
-        console.error(error);
-        next(error);
-    }
+app.use(function(error, req, res, next) {
+  if (error) {
+    console.error(error);
+    next(error);
+  }
 });
 
-app.use(function(error, req, res, next){
-    if(error){
-        let httpError = httpFactory.createHttpErrorFrom(error)
-        console.error(httpError.message);
-        return res.status(httpError.error_code).json(httpError.toJson());
-    }
+app.use(function(error, req, res, next) {
+  if (error) {
+    const httpError = httpFactory.createHttpErrorFrom(error);
+    console.error(httpError.message);
+    return res.status(httpError.error_code).json(httpError.toJson());
+  }
 });
-
 
 
 app.listen(port, () => {
-    console.log(`Example app listening at port ${port}`);
+  console.log(`BookNOtes app listening at port ${port}`);
 });

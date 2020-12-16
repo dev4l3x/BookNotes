@@ -1,8 +1,6 @@
 
-module.exports = class BadArgumentError extends Error{
-
-    constructor(message){
-        super(message);
-    }
-
-}
+module.exports = class BadArgumentError extends Error {
+  constructor(message) {
+    super(message);
+  }
+};

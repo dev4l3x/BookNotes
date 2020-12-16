@@ -1,14 +1,13 @@
 Book = require('../domain/book');
 
 module.exports = class BooksRespository {
+  constructor() {
 
-    constructor(){
+  }
 
-    }
-
-    getBooks (){
-        return [
-            new Book({ title: "prueba", author: "prueba", notes: [] } )
-        ];
-    }
-}
+  getBooks() {
+    return [
+      new Book({title: 'prueba', author: 'prueba', notes: []} ),
+    ];
+  }
+};
