@@ -5,7 +5,7 @@ module.exports = class GetBooksService {
     this._repository = repository;
   }
 
-  async get_books_for_user(user) {
+  async getBooksForUser(user) {
     if (user == null || user == undefined) {
       throw new BadArgumentError('User cannot be null or undefined');
     }

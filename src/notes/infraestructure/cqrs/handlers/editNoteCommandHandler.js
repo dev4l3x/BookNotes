@@ -1,10 +1,9 @@
 const EditNoteService = require('../../../application/editNoteService');
 const Note = require('../../../domain/note');
 const NoteRepository = require('../../noteRepository');
-const BookRepository = require('../../../../books/infraestructure/bookRepository');
+const BookRepository =
+    require('../../../../books/infraestructure/bookRepository');
 const AuthError = require('../../../../common/exceptions/authenticationError');
-// const Rep = require('../../../../common/persistence/Repository');
-// const {UserModel} = require('../../../../configuration/DatabaseConfiguration');
 
 module.exports = class EditNoteCommandHandler {
   constructor(command) {
@@ -25,8 +24,15 @@ module.exports = class EditNoteCommandHandler {
 
     const retrievedNote = await rep.get(note.id);
 
-    if (!(await bookRep.isBookOfUser(retrievedNote.book, this.command.userAuthenticated))) {
-      throw new AuthError('User authenticated cannot create notes on this book.');
+    const isBookOfUser = await bookRep.isBookOfUser(
+        retrievedNote.book,
+        this.command.userAuthenticated,
+    );
+
+    if (!isBookOfUser) {
+      throw new AuthError(
+          'User authenticated cannot create notes on this book.',
+      );
     }
 
     const service = new EditNoteService(rep);

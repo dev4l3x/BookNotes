@@ -1,6 +1,4 @@
-
 const UserRepo = require('../../userRepository');
-const {UserModel} = require('../../../../configuration/DatabaseConfiguration');
 const User = require('../../../domain/user');
 const AuthService = require('../../../application/authenticateUserService');
 

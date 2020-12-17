@@ -10,7 +10,9 @@ module.exports = class CreateBookCommandHandler {
   async handle() {
     const repository = new Repo();
     const bookService = new CreateBookService(repository);
-    const book = new Book({title: this.command.title, author: this.command.author});
+    const book = new Book(
+        {title: this.command.title, author: this.command.author},
+    );
     await bookService.create(book, this.command.userCreator);
   }
 };

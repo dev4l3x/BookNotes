@@ -1,6 +1,7 @@
 
 const NotFoundError = require('../../common/exceptions/notFoundError');
-const AuthenticationError = require('../../common/exceptions/authenticationError');
+const AuthenticationError =
+    require('../../common/exceptions/authenticationError');
 
 module.exports = class DeleteNoteService {
   constructor(repository, bookRepository, currentUser) {
@@ -15,9 +16,12 @@ module.exports = class DeleteNoteService {
     }
 
     const book = await this._bookRep.getBookContainingNote(note);
-    const isBookOfCurrentUser = await this._bookRep.isBookOfUser(book.id, this._currentUser);
+    const isBookOfCurrentUser =
+        await this._bookRep.isBookOfUser(book.id, this._currentUser);
     if (!isBookOfCurrentUser) {
-      throw new AuthenticationError('User authenticated cannot delete notes on this book.');
+      throw new AuthenticationError(
+          'User authenticated cannot delete notes on this book.',
+      );
     }
 
     const noteFinded = book.notes.find((num) => num.id === note.id);

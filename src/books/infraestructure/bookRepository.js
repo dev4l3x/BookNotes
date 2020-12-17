@@ -18,11 +18,14 @@ module.exports = class BookRepository extends Repository {
   }
 
   async getAllBooksOfUser(user) {
-    const books = await this._collection.find({user: user._id}).populate('notes');
+    const books =
+        await this._collection.find({user: user._id}).populate('notes');
     await books[0].populate('notes').execPopulate();
 
     const booksMapped = books.map((book) => {
-      return mapToTypeFrom({type: Book, properties: ['title', 'author', 'notes']}, book);
+      return mapToTypeFrom(
+          {type: Book, properties: ['title', 'author', 'notes']}, book,
+      );
     });
 
     return booksMapped;
@@ -34,7 +37,12 @@ module.exports = class BookRepository extends Repository {
   }
 
   async getBookContainingNote(note) {
-    const book = await this._collection.findOne({notes: note._id}).populate('notes').lean();
-    return mapToTypeFrom({type: Book, properties: ['title', 'author', 'notes', 'id']}, book);
+    const book =
+        await this._collection.findOne(
+            {notes: note._id},
+        ).populate('notes').lean();
+    return mapToTypeFrom(
+        {type: Book, properties: ['title', 'author', 'notes', 'id']}, book,
+    );
   }
 };

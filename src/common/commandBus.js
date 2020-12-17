@@ -1,7 +1,6 @@
 
 module.exports = class CommandBus {
-
-    static _instance;
+    static _instance = 0;
 
     constructor()
     {

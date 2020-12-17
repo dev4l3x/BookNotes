@@ -1,13 +1,13 @@
-const CreateBookCommand = require('../infraestructure/cqrs/commands/createBookCommand');
+const CreateBookCommand =
+    require('../infraestructure/cqrs/commands/createBookCommand');
 const CommandBus = require('../../common/commandBus');
 const QueryBus = require('../../common/queryBus');
-const BadArgumentError = require('../../common/exceptions/badArgumentError');
 const GetBooksQuery = require('./cqrs/queries/getBooksQuery');
-const {Query} = require('mongoose');
 
 module.exports = class BookController {
-  static async book_create_post(req, res, next) {
-    const command = new CreateBookCommand(req.body.title, req.body.author, req.user);
+  static async bookCreatePost(req, res, next) {
+    const command =
+        new CreateBookCommand(req.body.title, req.body.author, req.user);
     try {
       await CommandBus.instance.dispatch(command);
     } catch (error) {
@@ -16,7 +16,7 @@ module.exports = class BookController {
     return res.status(201).send('Created');
   }
 
-  static async book_get(req, res, next) {
+  static async bookGet(req, res, next) {
     const query = new GetBooksQuery(req.user);
 
     try {

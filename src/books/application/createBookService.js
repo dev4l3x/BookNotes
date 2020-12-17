@@ -9,6 +9,8 @@ module.exports = class CreateBookService {
     if (userCreator == null || userCreator == undefined) {
       throw new BadArgumentError('User cannot be empty');
     }
-    return await this._repository.createBookForUser(entityToCreate, userCreator);
+    return await this._repository.createBookForUser(
+        entityToCreate, userCreator,
+    );
   }
 };
