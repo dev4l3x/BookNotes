@@ -3,6 +3,7 @@ const CreateBookCommand =
 const CommandBus = require('../../common/commandBus');
 const QueryBus = require('../../common/queryBus');
 const GetBooksQuery = require('./cqrs/queries/getBooksQuery');
+const DeleteBookCommand = require('./cqrs/commands/deleteBookCommand');
 
 module.exports = class BookController {
   static async bookCreatePost(req, res, next) {
@@ -23,6 +24,16 @@ module.exports = class BookController {
       const books = await QueryBus.instance.dispatch(query);
 
       return res.status(200).json(books);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async bookDelete(req, res, next) {
+    const command = new DeleteBookCommand(req.params.bookId, req.user);
+    try {
+      await CommandBus.instance.dispatch(command);
+      return res.status(200).json({message: 'deleted'});
     } catch (error) {
       next(error);
     }

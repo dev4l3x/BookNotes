@@ -13,5 +13,9 @@ module.exports = class NoteRepository extends Repository {
     model.body = note.body;
     await model.save();
     return model;
+  };
+
+  async deleteNotesForBook(book) {
+    await this._collection.deleteMany({book: book._id});
   }
 };

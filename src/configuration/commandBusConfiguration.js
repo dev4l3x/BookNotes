@@ -20,6 +20,12 @@ const DeleteNoteCommand =
 const DeleteNoteCommandHandler =
     require('../notes/infraestructure/cqrs/handlers/deleteNoteCommandHandler');
 
+const DeleteBookCommandHandler =
+    require('../books/infraestructure/cqrs/handlers/deleteBookCommandHandler');
+
+const DeleteBookCommand =
+    require('../books/infraestructure/cqrs/commands/deleteBookCommand');
+
 module.exports = function configureCommandBus() {
   CommandBus.instance.addCommandHandler(
       CreateBookCommand.name, CreateBookCommandHandler,
@@ -35,5 +41,8 @@ module.exports = function configureCommandBus() {
   );
   CommandBus.instance.addCommandHandler(
       DeleteNoteCommand.name, DeleteNoteCommandHandler,
+  );
+  CommandBus.instance.addCommandHandler(
+      DeleteBookCommand.name, DeleteBookCommandHandler,
   );
 };

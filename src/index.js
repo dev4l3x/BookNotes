@@ -2,7 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const app = express();
 module.exports.app = app;
-const port = 3000;
+const port = 5000;
 
 const httpFactory = require('./common/exceptions/httpErrorFactory');
 const cmdBusConfiguration = require('./configuration/commandBusConfiguration');

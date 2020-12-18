@@ -1,7 +1,5 @@
 
 module.exports = class CommandBus {
-    static _instance = 0;
-
     constructor()
     {
         this._commandHandlers = {}
