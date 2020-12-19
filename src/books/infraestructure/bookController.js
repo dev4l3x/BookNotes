@@ -4,6 +4,8 @@ const CommandBus = require('../../common/commandBus');
 const QueryBus = require('../../common/queryBus');
 const GetBooksQuery = require('./cqrs/queries/getBooksQuery');
 const DeleteBookCommand = require('./cqrs/commands/deleteBookCommand');
+const EditBookCommand = require('./cqrs/commands/editBookCommand');
+const Book = require('../domain/book');
 
 module.exports = class BookController {
   static async bookCreatePost(req, res, next) {
@@ -38,4 +40,18 @@ module.exports = class BookController {
       next(error);
     }
   }
+
+  static async bookEdit(req, res, next) {
+    try {
+      const book = new Book(
+        {title: req.body.title, author: req.body.author, id: req.params.bookId}
+      );
+      const command = new EditBookCommand(book, req.user);
+      await CommandBus.instance.dispatch(command);
+      return res.status(200).json({message: 'edited'});
+    } catch (error) {
+      next(error);
+    }
+  }
+
 };

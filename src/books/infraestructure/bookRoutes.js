@@ -12,4 +12,5 @@ app.use('/', router);
 
 app.post('/books', BookController.bookCreatePost);
 app.get('/books', BookController.bookGet);
+app.put('/books/:bookId', BookController.bookEdit);
 app.delete('/books/:bookId', BookController.bookDelete);

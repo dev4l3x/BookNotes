@@ -24,6 +24,6 @@ module.exports = class EditBookService {
                           'or is not authorized to update this book');
     }
 
-    await this._bookRepository.update(bookToUpdate);
+    await this._bookRepository.editBook(bookToUpdate);
   }
 };

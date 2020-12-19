@@ -45,4 +45,12 @@ module.exports = class BookRepository extends Repository {
         {type: Book, properties: ['title', 'author', 'notes', 'id']}, book,
     );
   }
+
+  async editBook(book){
+    const bookToEdit = await this.get(book.id);
+    bookToEdit.title = book.title;
+    bookToEdit.author = book.author;
+    await bookToEdit.save();
+    return bookToEdit;
+  }
 };

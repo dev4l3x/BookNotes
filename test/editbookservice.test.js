@@ -18,7 +18,7 @@ describe('EditBookService', async () => {
                 return {title:'test', author:'test'};
             }
 
-            mockRepository.update = function(book){
+            mockRepository.editBook = function(book){
                 updated = true;
             }
             let userAuthenticated = {};
@@ -47,7 +47,7 @@ describe('EditBookService', async () => {
                 return true;
             }
 
-            mockRepository.prototype.update = function(book){
+            mockRepository.prototype.editBook = function(book){
                 updated = true;
             }
             let userAuthenticated = {};
@@ -76,7 +76,7 @@ describe('EditBookService', async () => {
             mockRepository.prototype.get = function(bookId){
                 return {};
             }
-            mockRepository.prototype.update = function(book){
+            mockRepository.prototype.editBook = function(book){
                 updated = true;
             }
             let userAuthenticated = {};
